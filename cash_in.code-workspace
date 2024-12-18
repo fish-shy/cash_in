@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "cash_in",
+			"path": "."
+		},
+		{
+			"name": "assets",
+			"path": "../testing_cash_in/assets"
+		}
+	],
+	"settings": {}
+}
