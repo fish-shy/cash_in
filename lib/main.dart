@@ -1,4 +1,6 @@
 import 'package:cash_in/src/screen/bisnis_screen.dart';
+import 'package:cash_in/src/screen/map_screen.dart';
+import 'package:cash_in/src/screen/opening_animation.dart';
 
 import 'package:flutter/material.dart';
 void main() {
@@ -15,7 +17,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
     fontFamily: 'Montserrat', 
   ),
-      home: const BisnisScreen());      
+      home: OpeningAnimation(),);      
   }
 } 
 

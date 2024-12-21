@@ -77,7 +77,8 @@ SizedBox _lanjutkanButton(BuildContext context, double height, double width) {
       onPressed: () async {
         await PermissionHandler.cameraPermission();
         
-        Navigator.push(context,
+        Navigator.push(
+          context,
             MaterialPageRoute(builder: (context) => const LoginScreen()));
       },
       child: Text(

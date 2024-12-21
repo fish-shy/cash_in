@@ -1,6 +1,8 @@
+import 'package:cash_in/src/screen/bisnis_screen.dart';
 import 'package:cash_in/src/screen/map_screen.dart';
 import 'package:cash_in/src/screen/scan_code.dart';
 import 'package:cash_in/src/settings/payment_logo.dart';
+import 'package:cash_in/src/widget/bottom_navigation_bar.dart';
 import 'package:cash_in/src/widget/gradient_text.dart';
 
 import 'package:cash_in/src/widget/pay_button_widget.dart';
@@ -57,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                BuildGradientText('Personal', (){}),
+                BuildGradientText('Personal', () {}),
                 const SizedBox(width: 10),
                 const Text('|',
                     style: TextStyle(
@@ -65,7 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 18,
                     )),
                 const SizedBox(width: 10),
-                BuildGradientText('Bisnis', (){}),
+                BuildGradientText('Bisnis', () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const BisnisScreen()),
+                  );
+                }),
               ],
             ),
             const SizedBox(height: 24),
@@ -84,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     SizedBox(height: height * 0.02),
                     _buildMenuRow(width),
-                    const SizedBox(height: 10), 
+                    const SizedBox(height: 10),
                     Expanded(
                       child: ListView.builder(
                         itemCount: 4,
@@ -104,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNavigationBar(width),
+      bottomNavigationBar: BottomNavigationWidget(selectedIndex: _selectedIndex, onItemTapped: _onItemTapped),
     );
   }
 
@@ -249,8 +256,8 @@ class _HomeScreenState extends State<HomeScreen> {
         GestureDetector(
           onTap: onTap,
           child: Container(
-            width: width * 0.21,
-            height: width * 0.21,
+            width: width * 0.19,
+            height: width * 0.19,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [color1, color2],
@@ -273,94 +280,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildBottomNavigationBar(double width) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          height: 60,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 10,
-                spreadRadius: 1,
-              ),
-            ],
-          ),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home, color: Colors.purple),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.attach_money, color: Colors.grey),
-                label: 'Finance',
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.notifications, color: Colors.grey),
-                label: 'Inbox',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person, color: Colors.grey),
-                label: 'Profile',
-              ),
-            ],
-            currentIndex:
-                _selectedIndex > 1 ? _selectedIndex + 1 : _selectedIndex,
-            selectedItemColor: Colors.purple,
-            onTap: (index) {
-              if (index == 2) return;
-              _onItemTapped(index > 1 ? index - 1 : index);
-            },
-          ),
-        ),
-        Positioned(
-          bottom: 15,
-          left: width / 2 - 40,
-          child: GestureDetector(
-            onTap: () {
-              _onItemTapped(2);
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ScanCode()),
-              );
-            },
-            child: const CircleAvatar(
-              radius: 40,
-              backgroundColor: Colors.orange,
-              child: Text(
-                'QRIS',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   TextStyle textStyle() {
     return const TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.bold,
-      fontSize: 14,
+      fontSize: 12,
     );
   }
 }

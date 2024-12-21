@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cash_in/src/screen/store_screen.dart';
+import 'package:flutter_map/flutter_map.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -24,6 +25,7 @@ class _MapScreenState extends State<MapScreen> {
       body: SafeArea(
         child: Stack(
           children: [
+           
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
