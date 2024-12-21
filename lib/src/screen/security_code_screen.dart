@@ -21,11 +21,14 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
+  double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 79),
+             SizedBox(height: height*0.1),
             Center(
               child: widget.login
                   ? null
@@ -46,7 +49,7 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
                 fontSize: 25,
               ),
             ),
-            const SizedBox(height: 50),
+             SizedBox(height: height*0.07),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Row(
@@ -80,11 +83,11 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 50),
+             SizedBox(height: height*0.07),
             const Image(
               image: AssetImage('assets/images/Stuck at Home Secured.png'),
             ),
-            const SizedBox(height: 70),
+            SizedBox(height: height*0.02,),
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -98,7 +101,7 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 90),
+                     SizedBox(height: height*0.08),
                     LanjutkanButton(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,

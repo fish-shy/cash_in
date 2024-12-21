@@ -25,10 +25,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   void initState() {
     super.initState();
     _initializeNotifications();
-     _showNotification(
-    'OTP Code',
-    'Your OTP code is 12345. Use this code to complete verification.',
-  );
+    _showNotification(
+      'OTP Code',
+      'Your OTP code is 12345. Use this code to complete verification.',
+    );
   }
 
   void _initializeNotifications() async {
@@ -70,11 +70,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         _fieldFive.text;
 
     Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SecurityCodeScreen(login: false,)),
-                        (route) => false);
-   
+        context,
+        MaterialPageRoute(
+            builder: (context) => const SecurityCodeScreen(
+                  login: false,
+                )),
+        (route) => false);
   }
 
   @override

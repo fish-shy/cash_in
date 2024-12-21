@@ -24,6 +24,7 @@ class _ScanCodeState extends State<ScanCode> {
           
         ),
         onDetect: (capture){
+          
         },
       ),
     );

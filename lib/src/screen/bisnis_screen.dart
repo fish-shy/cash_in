@@ -426,7 +426,7 @@ Widget _buildProfile(double height, double width) {
               ),
             ],
           ),
-          Expanded(
+          const Expanded(
             child: const Icon(
               Icons.qr_code,
               size: 40,
