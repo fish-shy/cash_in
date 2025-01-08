@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class AuthenticationScreen extends StatefulWidget {
-  const AuthenticationScreen({super.key});
+  String uid;
+   AuthenticationScreen({super.key, required this.uid});
 
   @override
   State<AuthenticationScreen> createState() => _AuthenticationScreenState();
@@ -72,8 +73,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (context) => const SecurityCodeScreen(
-                  login: false,
+            builder: (context) => SecurityCodeScreen(
+                  login: false, uid: widget.uid,
                 )),
         (route) => false);
   }

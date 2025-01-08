@@ -1,6 +1,7 @@
 import 'package:cash_in/src/screen/home_screen.dart';
 import 'package:cash_in/src/widget/bottom_navigation_bar.dart';
 import 'package:cash_in/src/widget/gradient_text.dart';
+import 'package:cash_in/src/widget/navigation_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class BisnisScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class BisnisScreen extends StatefulWidget {
 
 class _BisnisScreenState extends State<BisnisScreen> {
    int _selectedIndex = 0;
-  bool _animateWave = false;
+  final bool _animateWave = false;
   String uang = '1.000.000';
 
   void _onItemTapped(int index) {
@@ -45,30 +46,18 @@ class _BisnisScreenState extends State<BisnisScreen> {
               ),
               height: height * 0.28,
             ),
-            Column(children: [
+            Column(
+              
+              children: [
               SizedBox(height: height * 0.06),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  BuildGradientText('Personal', () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                    );
-                  }),
-                  const SizedBox(width: 10),
-                  const Text('|',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      )),
-                  const SizedBox(width: 10),
-                  BuildGradientText('Bisnis', () {}),
-                ],
-              ),
+                 
+              ),  
+              const NavigationButtonWidget(home: false),
+              
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               _buildProfile(height, width),
               const SizedBox(
@@ -244,11 +233,11 @@ class _BisnisScreenState extends State<BisnisScreen> {
               borderRadius: BorderRadius.circular(10)),
           child: Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
-              Icon(Icons.casino),
-              SizedBox(
+              const Icon(Icons.casino),
+              const SizedBox(
                 width: 10,
               ),
               Column(
@@ -281,7 +270,7 @@ class _BisnisScreenState extends State<BisnisScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               )
             ],
@@ -427,7 +416,7 @@ Widget _buildProfile(double height, double width) {
             ],
           ),
           const Expanded(
-            child: const Icon(
+            child: Icon(
               Icons.qr_code,
               size: 40,
               color: Colors.white,

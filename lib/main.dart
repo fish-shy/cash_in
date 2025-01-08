@@ -1,8 +1,7 @@
-import 'package:cash_in/src/screen/authentication_screen.dart';
-import 'package:cash_in/src/screen/bisnis_screen.dart';
+import 'package:cash_in/firebase_options.dart';
 import 'package:cash_in/src/screen/map_screen.dart';
 import 'package:cash_in/src/screen/opening_animation.dart';
-import 'package:cash_in/src/screen/security_code_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +12,11 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((_) {
+  ]).then((_) async {
+    WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
     runApp(const MainApp());
   });
 }
@@ -27,7 +30,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Montserrat',
       ),
-      home: OpeningAnimation(),
+      home: const OpeningAnimation(),
     );
   }
 }

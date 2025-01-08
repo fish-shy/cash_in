@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cash_in/src/screen/store_screen.dart';
-import 'package:flutter_map/flutter_map.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -12,6 +11,7 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final TextEditingController myController = TextEditingController();
   int? selectedIndex;
+  int? selectedIndex2;
 
   @override
   void dispose() {
@@ -21,90 +21,157 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
           children: [
-           
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.arrow_back),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: TextField(
-                          controller: myController,
-                          decoration: const InputDecoration(
-                            labelText: "Cari Tempat Penukaran Uang",
-                            prefixIcon: Icon(Icons.search),
-                            border: OutlineInputBorder(),
+            // Background and Header
+            Stack(
+              children: [
+                Container(
+                  height: height * 0.5,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.center,
+                      colors: [
+                        Color.fromARGB(255, 160, 116, 231),
+                        Colors.white,
+                      ],
+                    ),
+                  ),
+                ),
+                Column(
+                  children: [
+                    // Search Row
+                    Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Icon(Icons.arrow_back),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    height: 80,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return _minButton(
-                          text: "Item $index",
-                          isSelected: selectedIndex == index,
-                          onPressed: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                        );
-                      },
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.all(10),
+                            child: TextField(
+                              controller: myController,
+                              decoration: const InputDecoration(
+                                labelText: "Cari Tempat Penukaran Uang",
+                                prefixIcon: Icon(Icons.search),
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            DraggableScrollableSheet(
-              initialChildSize: 0.4,
-              minChildSize: 0.1,
-              maxChildSize: 0.8,
-              builder: (BuildContext context, ScrollController scrollController) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(20),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 10,
-                        offset: const Offset(0, -5),
-                      ),
-                    ],
-                  ),
-                  child: ListView.builder(
-                    controller: scrollController,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return _storeButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StoreScreen()));
+                    const SizedBox(height: 5),
+                    // Horizontal ListView
+                    SizedBox(
+                      height: 30,
+                      child: ListView.builder(
+                        itemCount: 10,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return _minButton(
+                            index: index,
+                            text: "Item $index",
+                            isSelected: selectedIndex == index,
+                            onPressed: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                          );
                         },
-                      );
-                    },
-                  ),
-                );
-              },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            // Draggable Scrollable Sheet
+            Positioned.fill(
+              child: DraggableScrollableSheet(
+                initialChildSize: 0.4,
+                minChildSize: 0.1,
+                maxChildSize: 0.8,
+                builder:
+                    (BuildContext context, ScrollController scrollController) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 10,
+                          offset: const Offset(0, -5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          child: ListView.builder(
+                            controller: scrollController,
+                            itemCount: 0,
+                            itemBuilder: (context, index) {
+                              return const Text("");
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return _minButton(
+                                index: index,
+                                text: "Item $index",
+                                isSelected: selectedIndex2 == index,
+                                onPressed: () {
+                                  setState(() {
+                                    selectedIndex2 = index;
+                                  });
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        // ListView that scrolls
+                        Expanded(
+                          child: ListView.builder(
+                            controller: scrollController,
+                            itemCount: 10,
+                            itemBuilder: (context, index) {
+                              return _storeButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => const StoreScreen(),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -112,18 +179,30 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
-  Widget _minButton({required String text, required bool isSelected, required VoidCallback onPressed}) {
+  Widget _minButton({
+    required String text,
+    required bool isSelected,
+    required VoidCallback onPressed,
+    required int index,
+  }) {
     return GestureDetector(
       onTap: onPressed,
       child: Card(
         color: isSelected ? Colors.blue : Colors.white,
-        margin: const EdgeInsets.all(10),
+        margin: EdgeInsets.fromLTRB(index == 0 ? 10.0 : 7, 0, 0, 0),
         elevation: 1,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            text,
-            style: TextStyle(color: isSelected ? Colors.white : Colors.black),
+          padding: EdgeInsets.symmetric(
+            horizontal: index == 0 ? 8.0 : 30,
+          ),
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: isSelected ? Colors.white : Colors.black,
+                fontWeight: isSelected ? FontWeight.bold : null,
+              ),
+            ),
           ),
         ),
       ),

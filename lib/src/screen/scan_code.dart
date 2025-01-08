@@ -9,8 +9,9 @@ class ScanCode extends StatefulWidget {
 }
 
 class _ScanCodeState extends State<ScanCode> {
-  late BarcodeCapture capture;
+  final MobileScannerController _controller = MobileScannerController();
 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +19,16 @@ class _ScanCodeState extends State<ScanCode> {
       appBar: AppBar(
         title: const Text("Scan QRCode"),
       ),
-
       body: MobileScanner(
-        controller: MobileScannerController(
+        controller: _controller,
+        onDetect: (BarcodeCapture capture) {
+          for (final barcode in capture.barcodes) {
+            if (barcode.rawValue != null) {
+              final String code = barcode.rawValue!;
           
-        ),
-        onDetect: (capture){
-          
+              break;
+            }
+          }
         },
       ),
     );

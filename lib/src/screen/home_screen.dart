@@ -4,6 +4,7 @@ import 'package:cash_in/src/screen/scan_code.dart';
 import 'package:cash_in/src/settings/payment_logo.dart';
 import 'package:cash_in/src/widget/bottom_navigation_bar.dart';
 import 'package:cash_in/src/widget/gradient_text.dart';
+import 'package:cash_in/src/widget/navigation_button_widget.dart';
 
 import 'package:cash_in/src/widget/pay_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -56,24 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             SizedBox(height: height * 0.06),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BuildGradientText('Personal', () {}),
-                const SizedBox(width: 10),
-                const Text('|',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    )),
-                const SizedBox(width: 10),
-                BuildGradientText('Bisnis', () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const BisnisScreen()),
-                  );
-                }),
-              ],
+            const NavigationButtonWidget(
+              home: true,
             ),
             const SizedBox(height: 24),
             _buildCard(height, width),
@@ -111,7 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationWidget(selectedIndex: _selectedIndex, onItemTapped: _onItemTapped),
+      bottomNavigationBar: BottomNavigationWidget(
+          selectedIndex: _selectedIndex, onItemTapped: _onItemTapped),
     );
   }
 
