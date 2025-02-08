@@ -1,3 +1,5 @@
 # cash_in
 
-A new Flutter project.
+ project wirausaha merdeka cash-in
+
+ 
