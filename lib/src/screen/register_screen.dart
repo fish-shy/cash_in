@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:cash_in/src/screen/authentication_screen.dart';
 import 'package:cash_in/src/screen/login_screen.dart';

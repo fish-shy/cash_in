@@ -1,6 +1,4 @@
-import 'package:cash_in/src/screen/home_screen.dart';
 import 'package:cash_in/src/widget/bottom_navigation_bar.dart';
-import 'package:cash_in/src/widget/gradient_text.dart';
 import 'package:cash_in/src/widget/navigation_button_widget.dart';
 import 'package:flutter/material.dart';
 

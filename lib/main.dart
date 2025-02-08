@@ -1,5 +1,4 @@
 import 'package:cash_in/firebase_options.dart';
-import 'package:cash_in/src/screen/map_screen.dart';
 import 'package:cash_in/src/screen/opening_animation.dart';
 import 'package:firebase_core/firebase_core.dart';
 

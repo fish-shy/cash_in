@@ -1,9 +1,6 @@
-import 'package:cash_in/src/screen/bisnis_screen.dart';
 import 'package:cash_in/src/screen/map_screen.dart';
-import 'package:cash_in/src/screen/scan_code.dart';
 import 'package:cash_in/src/settings/payment_logo.dart';
 import 'package:cash_in/src/widget/bottom_navigation_bar.dart';
-import 'package:cash_in/src/widget/gradient_text.dart';
 import 'package:cash_in/src/widget/navigation_button_widget.dart';
 
 import 'package:cash_in/src/widget/pay_button_widget.dart';
